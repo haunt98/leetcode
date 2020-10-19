@@ -22,6 +22,11 @@ func TestSortedSquares_1(t *testing.T) {
 			arr:  []int{-7, -3, 2, 3, 11},
 			want: []int{4, 9, 9, 49, 121},
 		},
+		{
+			name: "simple",
+			arr:  []int{-2, 0},
+			want: []int{0, 4},
+		},
 	}
 
 	for _, tc := range tests {
@@ -56,6 +61,39 @@ func TestInsertionSort(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			insertionSort(tc.arr)
 			if diff := cmp.Diff(tc.want, tc.arr); diff != "" {
+				t.Errorf("mismatch (-want +got):\n%s", diff)
+			}
+		})
+	}
+}
+
+func TestSortedSquares_2(t *testing.T) {
+	tests := []struct {
+		name string
+		arr  []int
+		want []int
+	}{
+		{
+			name: "example 1",
+			arr:  []int{-4, -1, 0, 3, 10},
+			want: []int{0, 1, 9, 16, 100},
+		},
+		{
+			name: "example 2",
+			arr:  []int{-7, -3, 2, 3, 11},
+			want: []int{4, 9, 9, 49, 121},
+		},
+		{
+			name: "simple",
+			arr:  []int{-2, 0},
+			want: []int{0, 4},
+		},
+	}
+
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			got := sortedSquares_2(tc.arr)
+			if diff := cmp.Diff(tc.want, got); diff != "" {
 				t.Errorf("mismatch (-want +got):\n%s", diff)
 			}
 		})

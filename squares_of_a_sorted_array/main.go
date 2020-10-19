@@ -23,3 +23,65 @@ func insertionSort(arr []int) {
 		}
 	}
 }
+
+func sortedSquares_2(A []int) []int {
+	positiveIndex := 0
+
+	for i := 0; i < len(A); i++ {
+		if A[i] >= 0 {
+			positiveIndex = i
+			break
+		}
+	}
+
+	negativeIndex := positiveIndex - 1
+
+	for i := range A {
+		A[i] *= A[i]
+	}
+
+	result := make([]int, 0, len(A))
+
+	for {
+		positiveEnable := false
+		var positiveValue int
+		if positiveIndex < len(A) {
+			positiveEnable = true
+			positiveValue = A[positiveIndex]
+		}
+
+		negativeEnable := false
+		var negativeValue int
+		if negativeIndex >= 0 {
+			negativeEnable = true
+			negativeValue = A[negativeIndex]
+		}
+
+		if positiveEnable && negativeEnable {
+			if positiveValue < negativeValue {
+				result = append(result, positiveValue)
+				positiveIndex++
+			} else {
+				result = append(result, negativeValue)
+				negativeIndex--
+			}
+			continue
+		}
+
+		if positiveEnable {
+			result = append(result, positiveValue)
+			positiveIndex++
+			continue
+		}
+
+		if negativeEnable {
+			result = append(result, negativeValue)
+			negativeIndex--
+			continue
+		}
+
+		break
+	}
+
+	return result
+}
