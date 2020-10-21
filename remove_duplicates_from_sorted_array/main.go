@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	arr := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
-	fmt.Println(removeDuplicates_1(arr))
+	fmt.Println(removeDuplicates_2(arr))
 	fmt.Println(arr)
 }
 
@@ -34,4 +34,21 @@ func removeDuplicates_1(nums []int) int {
 	}
 
 	return newLen
+}
+
+func removeDuplicates_2(nums []int) int {
+	i := 0
+	j := i + 1
+
+	for j < len(nums) {
+		if nums[j] == nums[i] {
+			j++
+			continue
+		}
+
+		nums[i+1] = nums[j]
+		i++
+	}
+
+	return i + 1
 }
