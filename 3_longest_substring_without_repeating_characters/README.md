@@ -38,3 +38,12 @@ Constraints:
 
 - 0 <= s.length <= 5 \* 104
 - s consists of English letters, digits, symbols and spaces.
+
+## Thoughts
+
+Use two pointer technique.
+
+Right pointer starts to move, adds char to map to detect duplicate.
+If detect duplicate, left pointer starts to move until no more duplicate then right pointer re-start.
+
+Example: abcda, right pointer move from a -> b -> c -> d -> a (detect duplicate) then left pointer move from a -> b to remove duplicate.
